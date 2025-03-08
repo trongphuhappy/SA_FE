@@ -5,6 +5,7 @@ import { Backdrop } from "@/components/backdrop";
 import InputAuth from "@/components/input-auth";
 import useLoginGoogle from "@/hooks/use-login-google";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginForm() {
   const {
@@ -91,7 +92,7 @@ export default function LoginForm() {
               onClick={() => handleLoginGoogle()}
               className="w-full rounded-md py-2 bg-white border border-gray-400 hover:bg-gray-300 flex items-center justify-center space-x-2"
             >
-              <img
+              <Image
                 src={"/images/Google-icon.svg"}
                 alt="Login with Google"
                 width={25}
