@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.1.6",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.6.1",
     "@tanstack/react-query": "^5.67.2",
@@ -24,7 +26,9 @@
     "postcss": "8.5.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-easy-crop": "^5.4.1",
     "react-hook-form": "^7.54.2",
+    "react-icons": "^5.5.0",
     "react-oauth": "^0.0.1",
     "react-redux": "^9.2.0",
     "redux-persist": "^6.0.0",
