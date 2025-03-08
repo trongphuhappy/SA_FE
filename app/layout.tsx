@@ -16,10 +16,10 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "E-Neighbor",
-  description: "E-Neighbor",
+  title: "hehehe",
+  description: "hehehe",
   icons: {
-    icon: "images/logo.svg",
+    icon: "favicon.ico",
   },
 };
 
