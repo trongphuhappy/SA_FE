@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+
 import {
   Tooltip,
   TooltipContent,
@@ -8,16 +9,20 @@ import {
 } from "@/components/ui/tooltip";
 import { Fragment, useState } from "react";
 import Link from "next/link";
-import { useAppSelector } from "@/hooks/use-store";
+
 import AvatarMenu from "@/components/avatar-menu";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Bell, SquarePen } from "lucide-react";
+import { Bell, Search, SquarePen } from "lucide-react";
+
 import useToast from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/hooks/use-store";
+import Category from "@/components/category"; 
+
 
 export default function Header() {
   const { addToast } = useToast();
@@ -25,12 +30,26 @@ export default function Header() {
   const userState = useAppSelector((state) => state?.userSlice);
   const [avatarMenuTooltip, setAvatarMenuTooltip] = useState<boolean>(false);
 
+  const { checkExistLessorApi } = useCheckExsitLessor();
+
   const handleToggleAvatarMenuTooltip = () => {
     setAvatarMenuTooltip((prev) => !prev);
   };
 
   const handleCloseAvatarMenuTooltip = () => {
     setAvatarMenuTooltip(false);
+  };
+
+  const handlePostNow = async () => {
+    const res = await checkExistLessorApi();
+    if (res === false) {
+      addToast({
+        type: "error",
+        description: "Please update information to become a lessor",
+      });
+    } else {
+      router.push("/create-product");
+    }
   };
 
   return (
@@ -45,6 +64,10 @@ export default function Header() {
             </h1>
           </figure>
         </Link>
+
+        <section className="w-full h-10 flex-1 hidden sm:block">
+          <Search />
+        </section>
 
         <ul className="flex items-center gap-x-7">
           {userState.profile === null && (
@@ -144,8 +167,7 @@ export default function Header() {
                 </Popover>
               </li>
               <li>
-                {/* Need to fix onClick={ } */}
-                <button type="button" onClick={() => router.push("/post")}> 
+                <button type="button" onClick={handlePostNow}>
                   <div className="flex items-center gap-x-2 px-5 py-2 rounded-md bg-[#00939f] hover:bg-[#15757e]">
                     <SquarePen className="w-5 h-5 text-white" />
                     <span className="text-[14px] font-semibold text-white">
@@ -158,6 +180,14 @@ export default function Header() {
           )}
         </ul>
       </div>
+
+      <div className="h-[60px] flex items-center">
+        <Category />
+      </div>
     </header>
   );
+}
+
+function useCheckExsitLessor(): { checkExistLessorApi: any; } {
+  throw new Error("Function not implemented.");
 }

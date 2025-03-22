@@ -1,5 +1,5 @@
 import Header from "@/components/header";
-// import Footer from "@/components/footer";
+import Footer from "@/components/footer";
 
 export default function UserLayout({
   children,
@@ -10,7 +10,7 @@ export default function UserLayout({
     <div>
       <Header />
         <main className="font-montserrat">{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
